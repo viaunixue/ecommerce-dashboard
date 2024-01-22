@@ -53,7 +53,7 @@ export const StoreModal = () => {
 
     return(
         <Modal
-            title = "가게 생성하기"
+            title = "스토어 생성하기"
             description="제품과 카테고리를 관리하기 위한 새로운 스토어 추가하기"
             isOpen= {storeModal.isOpen}
             onClose={storeModal.onClose}
