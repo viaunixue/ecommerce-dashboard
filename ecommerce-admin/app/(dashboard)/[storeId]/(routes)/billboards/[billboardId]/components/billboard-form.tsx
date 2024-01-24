@@ -23,7 +23,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
 interface BillboardFormProps {
@@ -42,7 +41,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 }) => {
     const params = useParams(); 
     const router = useRouter();
-    const origin = useOrigin();
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -69,8 +67,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                 await axios.post(`/api/${params.storeId}/billboards`, data);
             }
             
-            router.refresh();
             router.push(`/${params.storeId}/billboards`);
+            router.refresh();
             toast.success(toastMessage);
         } catch (error) {
             toast.error("Something went wrong.");
@@ -83,8 +81,8 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         try {
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
+            router.push(`/${params.storeId}/billboards`);
             router.refresh();
-            router.push("/");
             toast.success("Billboard deleted.");
         } catch (error) {
             toast.error("Make sure removed all products and categories using this billboard first.");
@@ -160,7 +158,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                     </Button>
                 </form>
             </Form>
-            <Separator className="my-4"/> 
         </>
     )
 }
