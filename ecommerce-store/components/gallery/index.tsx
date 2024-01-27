@@ -11,7 +11,7 @@ interface GalleryProps {
 };
 
 const Gallery: React.FC<GalleryProps> = ({
-    images
+    images = []
 }) => {
     return (
         <Tab.Group as="div" className="flex flex-col-reverse">
@@ -24,7 +24,7 @@ const Gallery: React.FC<GalleryProps> = ({
             </div>
             <Tab.Panels className="aspect-square w-full">
                 {images.map((image) => (
-                    <Tab.Panel>
+                    <Tab.Panel key={image.id}>
                         <div className="aspect-square relative h-full w-full 
                         sm:rounded-lg overflow-hidden">
                             <NextImage 
