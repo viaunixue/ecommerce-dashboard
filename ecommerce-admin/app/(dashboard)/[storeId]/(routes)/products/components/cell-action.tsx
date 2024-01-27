@@ -37,7 +37,7 @@ export const CellAction: React.FC<CellActionProps> = ({
         toast.success("Product Id copied to the clipboard.");
     };
 
-    const onConfirm = async () => {
+    const onDelete = async () => {
         try {
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/products/${data.id}`);
@@ -56,7 +56,7 @@ export const CellAction: React.FC<CellActionProps> = ({
             <AlertModal 
                 isOpen={open}
                 onClose={() => setOpen(false)}
-                onConfirm={onConfirm}
+                onConfirm={onDelete}
                 loading={loading}
             /> 
             <DropdownMenu>
